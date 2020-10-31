@@ -4,12 +4,14 @@ package com.example.controller;
 import com.example.model.Product;
 import com.example.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@RestController
+@Controller
+@RequestMapping(value = "/")
 public class ProductController {
 
     private final ProductService productService;
@@ -19,7 +21,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/products")
+    @GetMapping(path = "/products")
     public ModelAndView findAll() {
         ModelAndView model = new ModelAndView("products");
         List<Product> products = productService.findAllProducts();
